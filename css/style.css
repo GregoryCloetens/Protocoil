@@ -7,7 +7,9 @@ html{
     background: linear-gradient(to right, #42e2b8, #03cafd, #2d82b7);
 }
 .glass{
-    margin: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1000px;
     background: rgba( 255, 255, 255, 0.45 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 7.0px );
