@@ -29,10 +29,12 @@ h1 {
 h2 {
     font-family: lato;
     /*font-size: 54px;*/
+    text-align: center;
 }
 .single_line {
     font-family: lato;
     /*font-size: 34px;*/
+    text-align: center;
 }
 p {
     font-family: raleway;
@@ -75,8 +77,38 @@ button.secundary {
     margin: 10px;
 }
 .devider {
-    background: linear-gradient(to left, #42e2b8, #03cafd, #2d82b7);
-    height: 50px;
+    height: 100px;
+    position: relative;
+}
+.devider img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    max-width: 2000px;
+    width: auto;
+}
+.devider2 {
+    height: 350px;
+    position: relative;
+    background-color: #fff;
+}
+.devider2 img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 1000px;
+    width: auto;
+}
+.devider3 {
+    height: 100px;
+    position: relative;
+}
+.devider3 img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 1000px;
+    width: auto;
 }
 .uitleg {
     text-align: center;
@@ -86,7 +118,8 @@ button.secundary {
     background-color: #fff;
 }
 .card {
-    width: 100px;
+    height: 300px;
+    width: 250px;
     text-align: center;
     background-color: #fff;
     border-radius: 10px;
@@ -94,16 +127,23 @@ button.secundary {
 }
 .card p {
     text-align: left;
+    line-height: 1.5em;
+    width: 80%;
+    margin: auto;
 }
 .card img {
     width: 50px;
-    margin: auto;
+    margin: 10px auto;
+}
+.card h3 {
+    margin-bottom: 20px;
 }
 .waarom {
     background-color: #fff;
 }
 .kunnen {
     background-color: #fff;
+    padding: 100px 0;
 }
 .interesse {
     text-align: center;
