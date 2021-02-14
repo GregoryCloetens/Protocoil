@@ -87,13 +87,6 @@ button.secundary {
     display: flex;
     justify-content: space-evenly;
 }
-.hesje {
-    width: 150px;
-    /*float: right;*/
-}
-.ambulance {
-    width: 150px;
-}
 .rechts {
     float: right;
     margin: 10px;
@@ -137,8 +130,21 @@ button.secundary {
     text-align: center;
     background-color: #fff;
 }
+.hesje {
+    width: 170px;
+    padding-top: 10px;
+}
 .werking {
     background-color: #fff;
+    display: flex;
+    justify-content: center;
+}
+.werkingTekst {
+    max-width: 400px;
+    margin-right: 20px;
+}
+.werkingTekst p {
+    margin-bottom: 20px;
 }
 .card {
     height: 300px;
@@ -163,10 +169,14 @@ button.secundary {
 .card h3 {
     margin-bottom: 20px;
 }
+.ambulance {
+    width: 150px;
+}
 .waarom {
     background-color: #fff;
     display: flex;
     justify-content: center;
+    padding-bottom: 50px;
 }
 .waaromimg {
     padding-top: 50px;
