@@ -10,8 +10,8 @@
 </head>
 <body>
     <div class="glass">
-        <img src="../images/logo.png" alt="logo">
-        <form action="" method="post">
+        <img src="../images/logo.png" class="logo" alt="logo">
+        <form class="formulier" action="" method="post">
             <div class="form-group">
                 <span class="icon_user"></span><input type="email" placeholder="Enter email" name="email" id="email" class="form-control">
             </div>

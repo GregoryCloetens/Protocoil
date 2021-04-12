@@ -7,7 +7,11 @@ html{
     background: linear-gradient(to right, #42e2b8, #03cafd, #2d82b7);
 }
 .glass{
-    margin: 20px;
+    
+    margin: 70px auto 0 auto;
+    padding: 40px;
+    max-width: 600px;
+    text-align: center;
     background: rgba( 255, 255, 255, 0.45 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 7.0px );
@@ -15,19 +19,36 @@ html{
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+.logo {
+    height: 160px;
+   
+}
+.formulier {
+    max-width: 300px;
+    margin: auto;
+}
+.form-group {
+    background-color: #fff;
+    border-radius: 50px;
+}
 form input[type='email'], form input[type='password'] {
     height: 50px;
     border: none;
     border-radius: 0 50px 50px 0;
+    outline: none;
 }
 form input[type='submit'] {
     font-family: raleway;
-    font-size: 0.7em;
+    font-size: 1em;
     border: none;
     border-radius: 5em;
-    padding: 0.5em 1em;
+    padding: 0.7em 1em;;
     background-color: #03cafd;
     color: #f4f4f4;
+    outline: none;
+}
+form input[type='submit']:hover {
+    cursor: pointer;
 }
 form span {
     background-color: #fff;
