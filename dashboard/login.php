@@ -1,5 +1,17 @@
 <?php 
+    include_once( __DIR__ . '/classes/User.php' );
 
+    if(!empty($_POST)){
+        try {
+            $user = new User();
+            $user->setEmail( $_POST['email'] );
+            $user->setPassword( $_POST['password'] );
+
+
+        } catch ( \Throwable $th ) {
+            $error = $th->getMessage();
+        }
+    }
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
