@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Gegenereerd op: 20 feb 2021 om 11:21
+-- Gegenereerd op: 11 mei 2021 om 10:24
 -- Serverversie: 5.7.31
 -- PHP-versie: 7.3.21
 
@@ -48,9 +48,13 @@ CREATE TABLE IF NOT EXISTS `admin` (
 DROP TABLE IF EXISTS `jacket`;
 CREATE TABLE IF NOT EXISTS `jacket` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `geolocation` varchar(255) NOT NULL,
-  `huminity` int(255) NOT NULL,
-  `pressure` int(255) NOT NULL,
+  `GPSX` double NOT NULL,
+  `GPSY` double NOT NULL,
+  `GPSZ` double NOT NULL,
+  `Alert` tinyint(1) NOT NULL DEFAULT '0',
+  `Active` tinyint(1) NOT NULL DEFAULT '0',
+  `Wet` tinyint(1) NOT NULL DEFAULT '0',
+  `Lastcheckin` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
