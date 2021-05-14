@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Gegenereerd op: 20 feb 2021 om 11:21
+-- Gegenereerd op: 11 mei 2021 om 10:28
 -- Serverversie: 5.7.31
 -- PHP-versie: 7.3.21
 
@@ -48,9 +48,13 @@ CREATE TABLE IF NOT EXISTS `admin` (
 DROP TABLE IF EXISTS `jacket`;
 CREATE TABLE IF NOT EXISTS `jacket` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `geolocation` varchar(255) NOT NULL,
-  `huminity` int(255) NOT NULL,
-  `pressure` int(255) NOT NULL,
+  `GPSX` double NOT NULL,
+  `GPSY` double NOT NULL,
+  `GPSZ` double NOT NULL,
+  `Alert` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0= gezond, 1 = probleem',
+  `Active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0= niet in gebruik, 1 = wel in gebruik',
+  `Wet` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0= droog , 1= nat',
+  `Lastcheckin` datetime(6) NOT NULL COMMENT 'laatste keer gepint, check elke 10 min ofzo',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -65,7 +69,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL COMMENT 'is de persoon gekwetst? 0 = false 1 = true',
   `jacket_id` int(255) NOT NULL COMMENT 'verbonden met jacket',
   PRIMARY KEY (`id`),
   KEY `jacket_id` (`jacket_id`)
