@@ -5,6 +5,6 @@ const SETTINGS = [
         'user'      => 'root',
         'password'  => '',
         'host'      => 'localhost:3308',
-        'dbname'    => 'protocoil'
+        'dbname'    => 'prot'
     ]
 ];
