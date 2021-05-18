@@ -25,7 +25,10 @@ p img {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 #sidebar {
-    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
     height: 100%;
     max-height: 100%;
     width: 250px;
@@ -33,6 +36,11 @@ p img {
     border: none;
     border-right: 1px solid rgba( 255, 255, 255, 0.18 );
     overflow-y: auto;
+}
+.menuNav {
+    display: flex;
+    column-gap: 15px;
+    padding-top: 20px;
 }
 .icon_user {
     height: 25px;
@@ -46,4 +54,23 @@ h3 {
     width: 200px;
     background-color: grey;
     margin: 20px 0;
+}
+.credit {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    color: white;
+    font-size: .8em;
+    background-color: #5e5e5e;
+    border-top-left-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: normal;
+}
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
