@@ -1,0 +1,1 @@
+<h1><img src='../images/user.png' class='userimage'>Gregory</h1><p>lan = <?php echo $lan; ?></p><p>long = <?php echo $long; ?></p>

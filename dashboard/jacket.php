@@ -8,6 +8,7 @@
             $lastname = $_POST['lastname'];
             $email = $_POST['email'];
             $password = $_POST['password'];
+            $jacket_id = $_POST['jacket_id'];
         }
     } else {
         header('Location: logout.php');
