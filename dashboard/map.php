@@ -55,22 +55,6 @@ if(isset($_SESSION['admin'])){
                 }
             }; ?>
         </div>
-        <div class="devider"></div>
-        <div class="charging">
-        <h3>Opladen</h3>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-                <p><img src="../images/user.png" class='icon_user'>90%</p>
-        </div>
     </section>
 <!-- einde sidebar -->
 <div class="bouderies">

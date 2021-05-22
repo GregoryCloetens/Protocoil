@@ -1,7 +1,7 @@
 <?php
     include_once( __DIR__ . '/../classes/User.php' );
     session_start();
-    if(isset($SESSION['admin'])){
+    if(isset($_SESSION['admin'])){
         $conn = Db::getConnection();
         if(!empty($_POST)){
             $firstname = $_POST['firstname'];
@@ -22,6 +22,6 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <a href="logout.php"><img src="../images/logout.png"></a>
 </body>
 </html>

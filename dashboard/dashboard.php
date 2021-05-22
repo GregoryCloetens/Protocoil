@@ -3,7 +3,7 @@ include_once( __DIR__ . '/../classes/User.php' );
 session_start();
 if(isset($_SESSION['admin'])){
     $conn = Db::getConnection();
-    $query = $conn->prepare('select * from user');
+    $query = $conn->prepare('select * from user where active = 1');
     $query->execute();
     $user = $query->fetchAll( PDO::FETCH_ASSOC );
 } else {
@@ -33,28 +33,38 @@ if(isset($_SESSION['admin'])){
 <!-- sidebar -->
 <section id="sidebar" class="glass">
         <div class="menuNav">
-            <a href="logout.php"><img src="../images/logout.png"></a>
             <h3>Dashboard</h3>
             <a href="jacket.php"><img src="../images/settings.png"></a>
         </div>
         <div class="devider"></div>
         <div class="alarmen">
         <h3>Alarmen</h3>
-            <?php foreach($user as $u){
-                if($u['active'] == 1 && $u['alarm'] == 1){
-                    echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "<img src='../images/alarm.png' class='danger'></p>";
-                }
-            }; ?>
+        <?php if($user){ 
+                foreach($user as $u){
+                    if( $u['alarm'] == 1){
+                        echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "<img src='../images/alarm.png' class='danger'></p>";
+                    }
+                };
+            } else {
+                echo 'alles in orde';
+            }
+        ?>
         </div>
         <div class="devider"></div>
         <div class="online">
         <h3>Online</h3>
-            <?php foreach($user as $u){
-                if($u['active'] == 1 && $u['alarm'] == 0){
-                    echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "</p>";
-                }
-            }; ?>
+        <?php if($user){ 
+                foreach($user as $u){
+                    if ( $u['alarm'] == 0) {
+                        echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "</p>";
+                    } 
+                }; 
+            } else {
+                echo "niemand online";
+            }
+        ?>
         </div>
+        <!--
         <div class="devider"></div>
         <div class="charging">
         <h3>Opladen</h3>
@@ -70,7 +80,7 @@ if(isset($_SESSION['admin'])){
                 <p><img src="../images/user.png" class='icon_user'>90%</p>
                 <p><img src="../images/user.png" class='icon_user'>90%</p>
                 <p><img src="../images/user.png" class='icon_user'>90%</p>
-        </div>
+        </div> -->
     </section>
 <!-- einde sidebar -->
 <div class="bouderies">
@@ -78,29 +88,24 @@ if(isset($_SESSION['admin'])){
 </div>
     <script>
         const mymap = L.map('mapid').setView([51.257522777765885, 4.371170240157178], 13);
-        const marker = L.marker([51.257522777765885, 4.371170240157178]).addTo(mymap);
+        //const marker = L.marker([51.257291, 4.360752]).addTo(mymap);
+        //marker.bindPopup("<?php //include_once('markerInfo.php');?>").openPopup();
+
+            <?php foreach($user as $u){
+                if($u['alarm'] == 1){
+                    echo "const marker" . $u['jacket_id'] . " = L.marker([" . $u['GPSX'] . ", " . $u['GPSY'] . "]).addTo(mymap);
+                    marker" . $u['jacket_id'] . ".bindPopup('". $u['firstname'] ."').openPopup();";
+                }
+            }
+            ?>
+
+        
 
         const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
         const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         const tiles = L.tileLayer(tileUrl, { attribution });
         tiles.addTo(mymap);
-        const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
-
-        async function getISS() {
-            const response = await fetch(api_url);
-            const data = await response.json();
-            const { latitude, longitude } = data;
-
-           // marker.setLatLng([latitude, longitude]);
-            //marker.bindPopup("<b>Help!</b><br>I am in pain.").openPopup();
-            marker.bindPopup("<?php include_once('markerInfo.php');?>").openPopup();
-
-            document.getElementById('lat').textContent = latitude.toFixed(2);
-            document.getElementById('lon').textContent = longitude.toFixed(2);
-        }
-
-        getISS();
         
     </script>
 </body>
