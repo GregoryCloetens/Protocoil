@@ -19,7 +19,7 @@ if(isset($_SESSION['admin'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styleDashboard.css">
-    <title>Document</title>
+    <title>Dashboard</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -39,31 +39,37 @@ if(isset($_SESSION['admin'])){
         <div class="devider"></div>
         <div class="alarmen">
         <h3>Alarmen</h3>
-        <?php if($user){ 
-                foreach($user as $u){
-                    if( $u['alarm'] == 1){
-                        echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "<img src='../images/alarm.png' class='danger'></p>";
-                    }
-                };
-            } else {
-                echo 'alles in orde';
-            }
-        ?>
+            <div id="alarmLijst">
+                <?php 
+                    foreach($user as $u){
+                        if( $u['alarm'] == 1){
+                            echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "<img src='../images/alarm.png' class='danger'></p>";
+                        }
+                    };
+                ?>
+            </div>    
         </div>
         <div class="devider"></div>
         <div class="online">
-        <h3>Online</h3>
-        <?php if($user){ 
-                foreach($user as $u){
-                    if ( $u['alarm'] == 0) {
-                        echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "</p>";
-                    } 
-                }; 
-            } else {
-                echo "niemand online";
-            }
-        ?>
+            <h3>Online</h3>
+            <div id="onlineLijst">
+                <?php 
+                    foreach($user as $u){
+                        if ( $u['alarm'] == 0) {
+                            echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "</p>";
+                        } 
+                    }; 
+                ?>
+            </div>
         </div>
+        <script>
+            if(document.getElementById('onlineLijst').innerHTML.trim().length == 0) {
+                document.getElementById('onlineLijst').innerHTML += '<p>Niemand online</p>';
+            };
+            if(document.getElementById('alarmLijst').innerHTML.trim().length == 0) {
+                document.getElementById('alarmLijst').innerHTML += '<p>Alles in orde!</p>';
+            };
+        </script>
         <!--
         <div class="devider"></div>
         <div class="charging">
@@ -91,15 +97,18 @@ if(isset($_SESSION['admin'])){
         //const marker = L.marker([51.257291, 4.360752]).addTo(mymap);
         //marker.bindPopup("<?php //include_once('markerInfo.php');?>").openPopup();
 
-            <?php foreach($user as $u){
-                if($u['alarm'] == 1){
+        <?php foreach($user as $u){
+                if($u['wet'] == 1){
+                    $wet = 'Water gedetecteerd';
+                } else {
+                    $wet = 'Geen water gedetecteerd';
+                };
+                if ($u['alarm'] == 1) {
                     echo "const marker" . $u['jacket_id'] . " = L.marker([" . $u['GPSX'] . ", " . $u['GPSY'] . "]).addTo(mymap);
-                    marker" . $u['jacket_id'] . ".bindPopup('". $u['firstname'] ."').openPopup();";
+                    marker" . $u['jacket_id'] . ".bindPopup('". "<h1>" . $u['firstname'] . " " . $u['lastname'] . "</h1><span>GPSX: ". $u['GPSX'] ."</span><br><span>GPSY: ". $u['GPSY'] ."</span><br><span>Wet: ". $wet ."</span>" ."').openPopup();";
+                    
                 }
-            }
-            ?>
-
-        
+        } ?>
 
         const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
