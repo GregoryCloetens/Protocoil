@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: May 26, 2021 at 07:28 PM
+-- Generation Time: May 26, 2021 at 07:35 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.12
 
@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `email` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `firstname` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lastname` varchar(300) NOT NULL,
+  `lastname` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin`
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `jacket` (
   `wet` tinyint(1) NOT NULL COMMENT '0 = droog',
   `lastCheckIn` date NOT NULL COMMENT 'laatste pin (check elke 10min)',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -73,19 +73,19 @@ CREATE TABLE IF NOT EXISTS `jacket` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(300) NOT NULL,
-  `lastname` varchar(300) NOT NULL,
+  `firstname` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jacket_id` int(11) NOT NULL,
-  `email` varchar(300) NOT NULL,
-  `avatar` varchar(300) NOT NULL,
+  `email` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
   `active` tinyint(1) NOT NULL,
   `alert` tinyint(1) NOT NULL,
   `wet` tinyint(1) NOT NULL,
-  `GPSX` varchar(300) NOT NULL,
-  `GPSY` varchar(300) NOT NULL,
+  `GPSX` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `GPSY` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lastCheckIn` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
