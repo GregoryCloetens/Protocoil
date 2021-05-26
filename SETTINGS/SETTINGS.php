@@ -2,9 +2,9 @@
 
 const SETTINGS = [
     'db'=>[
-        'user'      => 'root',
-        'password'  => '',
-        'host'      => 'localhost:3308',
-        'dbname'    => 'prot'
+        'user'      => 'michaib313_michaib313',
+        'password'  => 'code2012',
+        'host'      => 'localhost',
+        'dbname'    => 'michaib313_Protocoil'
     ]
 ];
