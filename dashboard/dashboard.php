@@ -10,8 +10,6 @@ if(isset($_SESSION['admin'])){
     header("location: logout.php");
 }
 
-    $lan = 51.257522777765885;
-    $long = 4.371170240157178;
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +40,7 @@ if(isset($_SESSION['admin'])){
             <div id="alarmLijst">
                 <?php 
                     foreach($user as $u){
-                        if( $u['alarm'] == 1){
+                        if( $u['alert'] == 1){
                             echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "<img src='../images/alarm.png' class='danger'></p>";
                         }
                     };
@@ -55,7 +53,7 @@ if(isset($_SESSION['admin'])){
             <div id="onlineLijst">
                 <?php 
                     foreach($user as $u){
-                        if ( $u['alarm'] == 0) {
+                        if ( $u['alert'] == 0) {
                             echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "</p>";
                         } 
                     }; 
@@ -103,9 +101,9 @@ if(isset($_SESSION['admin'])){
                 } else {
                     $wet = 'Geen water gedetecteerd';
                 };
-                if ($u['alarm'] == 1) {
+                if ($u['alert'] == 1) {
                     echo "const marker" . $u['jacket_id'] . " = L.marker([" . $u['GPSX'] . ", " . $u['GPSY'] . "]).addTo(mymap);
-                    marker" . $u['jacket_id'] . ".bindPopup('". "<h1>" . $u['firstname'] . " " . $u['lastname'] . "</h1><span>GPSX: ". $u['GPSX'] ."</span><br><span>GPSY: ". $u['GPSY'] ."</span><br><span>Wet: ". $wet ."</span>" ."').openPopup();";
+                    marker" . $u['jacket_id'] . ".bindPopup('". "<h2>" . $u['firstname'] . " " . $u['lastname'] . "</h2><span>GPSX: ". $u['GPSX'] ."</span><br><span>GPSY: ". $u['GPSY'] ."</span><br><span>Wet: ". $wet ."</span>" ."').openPopup();";
                     
                 }
         } ?>
