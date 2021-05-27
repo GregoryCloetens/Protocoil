@@ -1,20 +1,28 @@
 <?php
+    abstract class Db {
+        private static $conn;
+        private static function getConfig(){
+            // get the config file
+            return parse_ini_file(__DIR__ . "./../config/config.ini");
+        }
 
-class Db {
-
-    private static $conn;
-
-    public static function getConnection() 
-    {
-
-        include_once( __DIR__ . '/../settings/SETTINGS.php' );
-
-        if ( self::$conn === null ) {
-            self::$conn = new PDO( 'mysql:host='. SETTINGS['db']['host'].';dbname='. SETTINGS['db']['dbname'], SETTINGS['db']['user'], SETTINGS['db']['password'] );
-           
-            return self::$conn;
-        } else {
-            return self::$conn;
+        public static function getConnection() {
+            if(self::$conn != null) {
+                // REUSE our connection
+                //echo "ЁЯЪА";
+                return self::$conn;
+            }
+            else {
+                // CREATE a new connection
+                // get the configuration for our connection from one central settings file
+                $config = self::getConfig();
+                $database = $config['database'];
+                $user = $config['user'];
+                $password = $config['password'];
+                
+                //echo "ЁЯТе";
+                self::$conn = new PDO('mysql:host=localhost;dbname='.$database.';charset=utf8mb4', $user, $password);
+                return self::$conn;
+            }
         }
     }
-}
