@@ -26,28 +26,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
-<form action="" method="post">
-      <div class="form-group">
-        <label for="firstname">firstname</label>
-        <input type="firstname" placeholder="Enter firstname" name="firstname" id="firstname" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="lastname">lastname</label>
-        <input type="lastname" placeholder="Enter lastname" name="lastname" id="lastname" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" placeholder="Enter email" name="email" id="email" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" name="password" id="password" class="form-control">
-      </div>
-      <input type="submit" value="Sign up" class="btn btn-primary btnu">
-
-    </form>
+<div class="glass">   
+  <h1>Registreer</h1>     
+        <form class="formulier" action="" method="post">
+        <div class="form-group">
+                <span class="icon icon_user"></span><input type="firstname" placeholder="Enter firstname" name="firstname" id="firstname" class="form-control">
+          </div>
+          <div class="form-group">
+                <span class="icon icon_user"></span><input type="lastname" placeholder="Enter lastname" name="lastname" id="lastname" class="form-control">
+          </div>
+            <div class="form-group">
+                <span class="icon icon_email"></span><input type="email" placeholder="Enter email" name="email" id="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <span class="icon icon_password"></span><input type="password" placeholder="Password" name="password" id="password" class="form-control">
+            </div>
+            <input type="submit" value="Sign up">
+        </form>
+    </div>
 </body>
 </html>

@@ -19,6 +19,21 @@ html{
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+h1 {
+    color: #2D82B7;
+}
+#logoutBtn {
+    text-decoration: none;
+    font-family: raleway;
+    font-size: 1em;
+    border: none;
+    border-radius: 5em;
+    padding: 0.7em 1em;;
+    background-color: #7a0a0a;
+    color: #f4f4f4;
+    outline: none;
+    margin-left: 50px;
+}
 .logo {
     height: 160px;
    
@@ -31,7 +46,7 @@ html{
     background-color: #fff;
     border-radius: 50px;
 }
-form input[type='email'], form input[type='password'] {
+.form-control {
     height: 50px;
     border: none;
     border-radius: 0 50px 50px 0;
@@ -43,7 +58,7 @@ form input[type='submit'] {
     border: none;
     border-radius: 5em;
     padding: 0.7em 1em;;
-    background-color: #03cafd;
+    background-color: #2D82B7;
     color: #f4f4f4;
     outline: none;
 }
@@ -64,15 +79,20 @@ form span {
 .form-group {
     margin: 20px;
 }
-.icon_user {
-    background-image: url(../../images/user.png);
+.icon {
     background-position: top left;
     background-repeat: no-repeat;
     background-size: 50px 50px;
 }
+.icon_user {
+    background-image: url(../../images/user.png);
+}
 .icon_password {
     background-image: url(../../images/password.png);
-    background-position: top left;
-    background-repeat: no-repeat;
-    background-size: 50px 50px;
+}
+.icon_email {
+    background-image: url(../../images/email.png);
+}
+.icon_jacket {
+    background-image: url(../../images/jacket.png);
 }

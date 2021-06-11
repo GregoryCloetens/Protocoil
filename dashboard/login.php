@@ -48,10 +48,10 @@
         <img src="../images/logo.png" class="logo" alt="logo">
         <form class="formulier" action="" method="post">
             <div class="form-group">
-                <span class="icon_user"></span><input type="email" placeholder="Enter email" name="email" id="email" class="form-control">
+                <span class="icon icon_email"></span><input type="email" placeholder="Enter email" name="email" id="email" class="form-control">
             </div>
             <div class="form-group">
-                <span class="icon_password"></span><input type="password" placeholder="Password" name="password" id="password" class="form-control">
+                <span class="icon icon_password"></span><input type="password" placeholder="Password" name="password" id="password" class="form-control">
             </div>
             <input type="submit" value="Login">
         </form>
