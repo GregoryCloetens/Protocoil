@@ -36,19 +36,55 @@ if(isset($_SESSION['admin'])){
         </div>
         <div class="devider"></div>
         <div class="alarmen">
-            <h3>Alarmen</h3>
+        <h3>Alarmen</h3>
             <div id="alarmLijst">
-               
+                <?php 
+                    foreach($user as $u){
+                        if( $u['alert'] == 1){
+                            echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "<img src='../images/alarm.png' class='danger'></p>";
+                        }
+                    };
+                ?>
             </div>    
         </div>
         <div class="devider"></div>
         <div class="online">
             <h3>Online</h3>
             <div id="onlineLijst">
-            
+                <?php 
+                    foreach($user as $u){
+                        if ( $u['alert'] == 0) {
+                            echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "</p>";
+                        } 
+                    }; 
+                ?>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+        <script>
+            if(document.getElementById('onlineLijst').innerHTML.trim().length == 0) {
+                document.getElementById('onlineLijst').innerHTML += '<p>Niemand online</p>';
+            };
+            if(document.getElementById('alarmLijst').innerHTML.trim().length == 0) {
+                document.getElementById('alarmLijst').innerHTML += '<p>Alles in orde!</p>';
+            };
+        </script>
+        <!--
+        <div class="devider"></div>
+        <div class="charging">
+        <h3>Opladen</h3>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+                <p><img src="../images/user.png" class='icon_user'>90%</p>
+        </div> -->
     </section>
 <!-- einde sidebar -->
 <div class="bouderies">
@@ -56,8 +92,21 @@ if(isset($_SESSION['admin'])){
 </div>
     <script>
         const mymap = L.map('mapid').setView([51.257522777765885, 4.371170240157178], 13);
+        //const marker = L.marker([51.257291, 4.360752]).addTo(mymap);
+        //marker.bindPopup("<?php //include_once('markerInfo.php');?>").openPopup();
 
-       
+        <?php foreach($user as $u){
+                if($u['wet'] == 1){
+                    $wet = 'Water gedetecteerd';
+                } else {
+                    $wet = 'Geen water gedetecteerd';
+                };
+                if ($u['alert'] == 1) {
+                    echo "const marker" . $u['jacket_id'] . " = L.marker([" . $u['GPSX'] . ", " . $u['GPSY'] . "]).addTo(mymap);
+                    marker" . $u['jacket_id'] . ".bindPopup('". "<h2>" . $u['firstname'] . " " . $u['lastname'] . "</h2><span>GPSX: ". $u['GPSX'] ."</span><br><span>GPSY: ". $u['GPSY'] ."</span><br><span>Wet: ". $wet ."</span>" ."').openPopup();";
+                    
+                }
+        } ?>
 
         const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
@@ -65,84 +114,6 @@ if(isset($_SESSION['admin'])){
         const tiles = L.tileLayer(tileUrl, { attribution });
         tiles.addTo(mymap);
         
-        const markers = {}
-        const alarmList = document.querySelector("#alarmLijst")
-        const onlineList = document.querySelector("#onlineLijst")
-
-        function initMarkers(){
-            $.ajax({    
-                    type: "GET",
-                    url: "../ajax/getUpdate.php",             
-                    dataType: "JSON"                 
-                    
-                }).done(function(res){
-                    let users = res
-                    users.forEach(user => {
-                        let newMarker = L.marker([user.GPSX,user.GPSY]);
-                        let wet
-                        if(user.wet == 1){
-                            wet = "Water gedetecteerd!"
-                        } else {
-                            wet = "Geen water gedetecteerd!"
-                        }
-                        newMarker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
-                        markers[user.jacket_id] = newMarker
-
-                        if(user.alert == 1 && user.active == 1){
-                            newMarker.addTo(mymap)
-                            let listElement = "<p><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + "<img src='../images/alarm.png' class='danger'></p>"
-                            alarmList.innerHTML += listElement
-                        } else {
-                            let listElement = "<p><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + "</p>"
-                            if(user.active == 1){
-                                onlineList.innerHTML += listElement
-                            }
-                        }
-                    });
-                });
-        }   
-        initMarkers()
-
-        setInterval(updateData, 1000);
-            function updateData(){
-                $.ajax({    
-                    type: "GET",
-                    url: "../ajax/getUpdate.php",             
-                    dataType: "JSON"                 
-                    
-                }).done(function(res){
-                    let users = res
-                    alarmList.innerHTML = ""
-                    onlineList.innerHTML = ""
-                    users.forEach(user => {
-                        marker = markers[user.jacket_id]
-                        marker.setLatLng([user.GPSX,user.GPSY])
-                        let wet
-                        if(user.wet == 1){
-                            wet = "Water gedetecteerd!"
-                        } else {
-                            wet = "Geen water gedetecteerd!"
-                        }
-                        marker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
-
-                        if(user.alert == 1 && user.active == 1){
-                            marker.addTo(mymap)
-                            let listElement = "<p><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + "<img src='../images/alarm.png' class='danger'></p>"
-                            alarmList.innerHTML += listElement
-                            
-                        } else {
-                            mymap.removeLayer(marker)
-                            let listElement = "<p><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + "</p>"
-                            if(user.active == 1){
-                                onlineList.innerHTML += listElement
-                            }
-                        }
-                    });
-                });
-                
-
-            }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 </body>
 </html>
