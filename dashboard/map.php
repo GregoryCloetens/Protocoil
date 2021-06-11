@@ -36,11 +36,12 @@ if(isset($_SESSION['admin'])){
         </div>
         <div class="devider"></div>
         <div class="alarmen">
-            <h3>Alarmen</h3>
+        <h3>Alarmen</h3>
             <div id="alarmLijst">
-                <?php foreach($user as $u){
+                <?php 
+                    foreach($user as $u){
                         if( $u['alert'] == 1){
-                                echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "<img src='../images/alarm.png' class='danger'></p>";
+                            echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "<img src='../images/alarm.png' class='danger'></p>";
                         }
                     };
                 ?>
@@ -50,14 +51,13 @@ if(isset($_SESSION['admin'])){
         <div class="online">
             <h3>Online</h3>
             <div id="onlineLijst">
-            <?php  
+                <?php 
                     foreach($user as $u){
                         if ( $u['alert'] == 0) {
                             echo "<p><img src='" . $u['avatar'] . "' class='icon_user'>" .$u['firstname']. " " .$u['lastname'] . "</p>";
                         } 
                     }; 
-                
-            ?>
+                ?>
             </div>
         </div>
         <script>
@@ -92,6 +92,8 @@ if(isset($_SESSION['admin'])){
 </div>
     <script>
         const mymap = L.map('mapid').setView([51.257522777765885, 4.371170240157178], 13);
+        //const marker = L.marker([51.257291, 4.360752]).addTo(mymap);
+        //marker.bindPopup("<?php //include_once('markerInfo.php');?>").openPopup();
 
         <?php foreach($user as $u){
                 if($u['wet'] == 1){
@@ -100,8 +102,8 @@ if(isset($_SESSION['admin'])){
                     $wet = 'Geen water gedetecteerd';
                 };
                 if ($u['alert'] == 1) {
-                    echo "const marker" . $u['jacket_id'] . " = L.marker([" . $u['GPSX'] . ", " . $u['GPSY'] . "]).addTo(mymap);";
-                    echo "marker" . $u['jacket_id'] . ".bindPopup('". "<h2>" . $u['firstname'] . " " . $u['lastname'] . "</h2><span>GPSX: ". $u['GPSX'] ."</span><br><span>GPSY: ". $u['GPSY'] ."</span><br><span>Wet: ". $wet ."</span>" ."').openPopup();";
+                    echo "const marker" . $u['jacket_id'] . " = L.marker([" . $u['GPSX'] . ", " . $u['GPSY'] . "]).addTo(mymap);
+                    marker" . $u['jacket_id'] . ".bindPopup('". "<h2>" . $u['firstname'] . " " . $u['lastname'] . "</h2><span>GPSX: ". $u['GPSX'] ."</span><br><span>GPSY: ". $u['GPSY'] ."</span><br><span>Wet: ". $wet ."</span>" ."').openPopup();";
                     
                 }
         } ?>

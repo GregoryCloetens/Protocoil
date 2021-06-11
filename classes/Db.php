@@ -21,7 +21,7 @@
                 $password = $config['password'];
                 
                 //echo "ЁЯТе";
-                self::$conn = new PDO('mysql:host=localhost;dbname='.$database.';charset=utf8mb4', $user, $password);
+                self::$conn = new PDO('mysql:host=localhost:3308;dbname='.$database.';charset=utf8mb4', $user, $password);
                 return self::$conn;
             }
         }
