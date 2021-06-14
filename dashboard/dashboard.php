@@ -109,7 +109,8 @@ if(isset($_SESSION['admin'])){
                         default:
                             direction = 'Geen val gedetecteerd'
                         }
-                        newMarker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>" + direction + "</span><br><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
+                        let fallTime = parseFloat(user.fallTime)/10
+                        newMarker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>" + direction + "</span><br><span>Valtijd: " + fallTime + "s</span><br><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
                         markers[user.jacket_id] = newMarker
 
                         if(user.alert == 1 && user.active == 1){
@@ -171,7 +172,8 @@ if(isset($_SESSION['admin'])){
                         default:
                             direction = 'Geen val gedetecteerd'
                         }
-                        marker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>" + direction + "</span><br><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
+                        let fallTime = parseFloat(user.fallTime)/10
+                        marker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>" + direction + "</span><br><span>Valtijd: " + fallTime + "s</span><br><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
 
                         if(user.alert == 1 && user.active == 1){
                             marker.addTo(mymap)
