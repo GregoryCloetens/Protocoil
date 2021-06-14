@@ -85,6 +85,17 @@ if(isset($_SESSION['admin'])){
                         } else {
                             wet = "Geen water gedetecteerd!"
                         }
+                        let fallDirection
+                        switch(fallDirection) {
+                        case 1:
+                            // code block
+                            break;
+                        case 2:
+                            // code block
+                            break;
+                        default:
+                            // code block
+                        }
                         newMarker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
                         markers[user.jacket_id] = newMarker
 
