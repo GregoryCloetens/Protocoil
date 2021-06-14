@@ -85,18 +85,31 @@ if(isset($_SESSION['admin'])){
                         } else {
                             wet = "Geen water gedetecteerd!"
                         }
-                        let fallDirection
+                        let fallDirection = parseFloat(user.fallDirection)
+                        var direction
                         switch(fallDirection) {
                         case 1:
-                            // code block
+                            direction = 'Naar links gevallen'
                             break;
                         case 2:
-                            // code block
+                            direction = 'Naar rechts gevallen'
+                            break;
+                        case 3:
+                            direction = 'Voorwaarts gevallen'
+                            break;
+                        case 4:
+                            direction = 'Achterwaarts gevallen'
+                            break;
+                        case 5:
+                            direction = 'Op de voeten gevallen'
+                            break;
+                        case 6:
+                            direction = 'Op het hoofd gevallen'
                             break;
                         default:
-                            // code block
+                            direction = 'Geen val gedetecteerd'
                         }
-                        newMarker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
+                        newMarker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>" + direction + "</span><br><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
                         markers[user.jacket_id] = newMarker
 
                         if(user.alert == 1 && user.active == 1){
@@ -134,7 +147,31 @@ if(isset($_SESSION['admin'])){
                         } else {
                             wet = "Geen water gedetecteerd!"
                         }
-                        marker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
+                        let fallDirection = parseFloat(user.fallDirection)
+                        var direction
+                        switch(fallDirection) {
+                        case 1:
+                            direction = 'Naar links gevallen'
+                            break;
+                        case 2:
+                            direction = 'Naar rechts gevallen'
+                            break;
+                        case 3:
+                            direction = 'Voorwaarts gevallen'
+                            break;
+                        case 4:
+                            direction = 'Achterwaarts gevallen'
+                            break;
+                        case 5:
+                            direction = 'Op de voeten gevallen'
+                            break;
+                        case 6:
+                            direction = 'Op het hoofd gevallen'
+                            break;
+                        default:
+                            direction = 'Geen val gedetecteerd'
+                        }
+                        marker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>" + direction + "</span><br><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
 
                         if(user.alert == 1 && user.active == 1){
                             marker.addTo(mymap)
