@@ -113,12 +113,19 @@ if(isset($_SESSION['admin'])){
                         newMarker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>" + direction + "</span><br><span>Valtijd: " + fallTime + "s</span><br><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
                         markers[user.jacket_id] = newMarker
 
+                        let err
+                        if(user.error == 1){
+                            err = "<img src='../images/err.png' class='errPng'>"
+                        } else {
+                            err = ''
+                        }
+
                         if(user.alert == 1 && user.active == 1 || user.wet == 1 && user.active == 1){
                             newMarker.addTo(mymap)
-                            let listElement = "<p><a href='#' id='"+ user.jacket_id +"'><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + "<img src='../images/alarm.png' class='danger'></a></p>"
+                            let listElement = "<p><a href='#' id='"+ user.jacket_id +"'><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + err + "<img src='../images/alarm.png' class='danger'></a></p>"
                             alarmList.innerHTML += listElement
                         } else {
-                            let listElement = "<p><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + "</p>"
+                            let listElement = "<p><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + err + "</p>"
                             if(user.active == 1){
                                 onlineList.innerHTML += listElement
                             }
@@ -175,14 +182,21 @@ if(isset($_SESSION['admin'])){
                         let fallTime = parseFloat(user.fallTime)/10
                         marker.bindPopup("<h2>"+user.firstname + " " + user.lastname+"</h2><span>" + direction + "</span><br><span>Valtijd: " + fallTime + "s</span><br><span>GPSX: "+ user.GPSX +"</span><br><span>GPSY: "+ user.GPSY +"</span><br><span>Wet: "+ wet +"</span>")
 
+                        let err
+                        if(user.error == 1){
+                            err = "<img src='../images/err.png' class='errPng'>"
+                        } else {
+                            err = ''
+                        }
+
                         if(user.alert == 1 && user.active == 1 || user.wet == 1 && user.active == 1){
                             marker.addTo(mymap)
-                            let listElement = "<p><a href='#' id='"+ user.jacket_id +"' class='eenrandomnaam'><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + "<img src='../images/alarm.png' class='danger'></a></p>"
+                            let listElement = "<p><a href='#' id='"+ user.jacket_id +"' class='eenrandomnaam'><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + err + "<img src='../images/alarm.png' class='danger'></a></p>"
                             alarmList.innerHTML += listElement
                             
                         } else {
                             mymap.removeLayer(marker)
-                            let listElement = "<p><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + "</p>"
+                            let listElement = "<p><img src='" + user.avatar + "' class='icon_user'>" + user.firstname + " " + user.lastname + err + "</p>"
                             if(user.active == 1){
                                 onlineList.innerHTML += listElement
                             }
